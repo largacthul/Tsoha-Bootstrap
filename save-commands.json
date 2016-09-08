@@ -1,0 +1,5 @@
+{
+    "commands": [
+        "*/* : /bin/bash deploy.sh"
+    ]
+}
