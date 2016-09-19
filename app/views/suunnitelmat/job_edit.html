@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Muokkaa askaretta Auton katsastus</h1>
+
+  <form>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox">
+        Valmis
+      </label>
+    </div>
+    <div class="form-group">
+      <label>Askare</label>
+      <input type="text" class="form-control" value="Auton katsastus">
+    </div>
+    <div class="form-group">
+      <label>Takaraja</label>
+      <input type="text" class="form-control" value="14.11.2016">
+    </div>
+    <!-- <div class="form-group">
+      <label>Tärkeys</label>
+      <input type="text" class="form-control" value="Bethesda Softworks">
+    </div> -->
+    <!-- Split button -->
+    <div class="btn-group">
+      <button type="button" class="btn btn-default">Tärkeys</button>
+      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span class="caret"></span>
+        <span class="sr-only">Toggle Dropdown</span>
+      </button>
+      <ul class="dropdown-menu">
+        <li><a href="#">Kriittinen!</a></li>
+        <li><a href="#">Tärkeä</a></li>
+        <li><a href="#">Normaali</a></li>
+        <li><a href="#">Ei tärkeä</a></li>
+      </ul>
+    </div>
+    <div class="form-group">
+      <label>Kuvaus</label>
+      <textarea class="form-control">Auton katsastus pitää taas hoitaa. Leima vanhenee 14.11.2016. Varaa katsastusaika ensi tilassa!
+      </textarea>
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">Tallenna</button>
+    </div>
+  </form>
+{% endblock %}

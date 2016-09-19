@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Muistilista</h1>
+
+  <p>
+    <a href="#" class="btn btn-success">Lisää askare</a>
+  </p>
+
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>Askare</th>
+        <th>Takaraja</th>
+        <th>Tärkeys</th>
+        <th>Luokat</th>
+        <th>Lisäyspäivä</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <!-- Listataan pelit tähän -->
+      <tr>
+        <td><a href="#">Auton katsastus</a></td>
+        <td>14.11.2016</td>
+        <td><label class="label label-danger">Kriittinen!</label></td>
+        <td>Auto</td>
+        <td>16.9.2016</td>
+        <th><a class="btn btn-default btn-sm" href="#">Muokkaa</a></th>
+      </tr>
+      <tr>
+        <td><a href="#">Viikkomuistio pomolle</a></td>
+        <td>joka perjantai</td>
+        <td><label class="label label-warning">Tärkeä</label></td>
+        <td>Työ, Jatkuva</td>
+        <td>16.9.2016</td>
+        <th><a class="btn btn-default btn-sm" href="#">Muokkaa</a></th>
+      </tr>
+    </tbody>
+  </table>
+{% endblock %}
