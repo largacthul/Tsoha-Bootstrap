@@ -15,6 +15,6 @@ Suunnitelmat tehty lähinnä ihan pohjiksi materiaalin perusteella tässä vaihe
 
 Tulevat muuttumaan.
 
-[Muistiinpanojen listaus](http://lgrohn.users.cs.helsinki.fi/tsoha/job_list)
-[Muistiinpanon muokkaus](http://lgrohn.users.cs.helsinki.fi/tsoha/job_edit)
-[Kirjautumissivu](http://lgrohn.users.cs.helsinki.fi/tsoha/login)
+* [Muistiinpanojen listaus](http://lgrohn.users.cs.helsinki.fi/tsoha/job_list)
+* [Muistiinpanon muokkaus](http://lgrohn.users.cs.helsinki.fi/tsoha/job_edit)
+* [Kirjautumissivu](http://lgrohn.users.cs.helsinki.fi/tsoha/login)
