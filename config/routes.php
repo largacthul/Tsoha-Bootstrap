@@ -8,6 +8,10 @@
     HelloWorldController::sandbox();
   });
 
+  $routes->get('/note', function(){
+    NoteController::index();
+  });
+
   $routes->get('/job_list', function() {
     HelloWorldController::job_list();
   });

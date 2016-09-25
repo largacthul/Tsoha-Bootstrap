@@ -1,5 +1,7 @@
 <?php
 
+  // require 'app/models/note.php';
+  // require 'app/models/label.php';
   class HelloWorldController extends BaseController{
 
     public static function index(){
@@ -9,7 +11,16 @@
 
     public static function sandbox(){
       // Testaa koodiasi täällä
-      View::make('helloworld.html');
+      // View::make('helloworld.html');
+      $katsastus = Note::find(1);
+      $notes = Note::all();
+      $luokitus = Label::find(1);
+      $labels = Label::all();
+      //Kint dumps
+      Kint::dump($katsastus);
+      Kint::dump($notes);
+      Kint::dump($luokitus);
+      Kint::dump($labels);
     }
 
     public static function job_list(){

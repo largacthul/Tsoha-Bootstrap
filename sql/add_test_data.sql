@@ -4,7 +4,7 @@ INSERT INTO NoteOwner (tunnus, nimi, kuvaus, salasana) VALUES ('NoteMaster', 'Pa
 INSERT INTO NoteOwner (tunnus, nimi, kuvaus, salasana) VALUES ('Muistiinpanija', 'Aatu Askare', 'Satunnainen käyttäjä', 'salasana');
 -- Note testidata
 INSERT INTO Note (otsikko, kuvaus, deadline, valmis) VALUES ('Auton katsastus', 'Auto pitää muistaa viedä katsastettavaksi!', '2016-11-14 23:59:59', FALSE);
-INSERT INTO Note (otsikko, kuvaus, deadline, valmis) VALUES ('Konsertti Tavastialla', 'Duuniporukan kanssa marraskuussa katsomaan Popedaa Tavastialle. Muista ostaa liput!', '2016-11-05 17:00:00', FALSE);
+INSERT INTO Note (otsikko, kuvaus, deadline, valmis) VALUES ('Konsertti Tavastialla', 'Duuniporukan kanssa marraskuussa katsomaan Popedaa Tavastialle. Muista ostaa liput!', '2016-11-05 17:00:00', TRUE);
 INSERT INTO Note (otsikko, kuvaus, deadline, valmis) VALUES ('Vessan lavuaari', 'Lavuaari vetää huonosti. Osta Kodin putkimiestä.', NULL, FALSE);
 -- Label testidata
 INSERT INTO Label (nimi, prioriteetti) VALUES ('Työ', 'Tärkeä');
