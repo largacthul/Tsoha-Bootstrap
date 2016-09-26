@@ -5,10 +5,11 @@
   </div>
 
   <h1>{{note.otsikko}}</h1>
+
   <p>
-    <!-- <button class="btn btn-danger">Poista</button>  -->
-    <a href="#" class="btn btn-default">Muokkaa</a>
+    {{note.kuvaus}}
   </p>
+
 
   <ul>
     <li><strong>Takaraja:</strong>{{note.deadline}}</li>
@@ -19,8 +20,10 @@
     {% endif %}
     <li><strong>Lisäyspäivä:</strong> {{note.lisays_paiva}}</li>
   </ul>
+
   <p>
-    {{note.kuvaus}}
+    <!-- <button class="btn btn-danger">Poista</button>  -->
+    <a href="{{base_path}}/note/{{note.id}}/edit" class="btn btn-default">Muokkaa</a>
   </p>
 
 {% endblock %}
