@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Lisää uusi askare</h1>
+
+  <form method="post" action="{{base_path}}/note">
+    <div class="form-group">
+      <label>Otsikko</label>
+      <input type="text" name="otsikko" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label>Kuvaus</label>
+      <input type="text" name="kuvaus" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label>Deadline</label>
+      <input type="text" name="deadline" class="form-control" value="yyyy-mm-dd hh:mm:ss">
+    </div>
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">Lisää</button>
+    </div>
+  </form>
+{% endblock %}

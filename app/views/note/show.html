@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="alert alert-success">
+    {{message}}
+  </div>
+
+  <h1>{{note.otsikko}}</h1>
+  <p>
+    <!-- <button class="btn btn-danger">Poista</button>  -->
+    <a href="#" class="btn btn-default">Muokkaa</a>
+  </p>
+
+  <ul>
+    <li><strong>Takaraja:</strong>{{note.deadline}}</li>
+    {% if note.valmis %}
+      <li><strong>Status:</strong> <label class="label label-success">Valmis</label></li>
+    {% else %}
+      <li><strong>Status:</strong> <label class="label label-danger">kesken</label></li>
+    {% endif %}
+    <li><strong>Lisäyspäivä:</strong> {{note.lisays_paiva}}</li>
+  </ul>
+  <p>
+    {{note.kuvaus}}
+  </p>
+
+{% endblock %}

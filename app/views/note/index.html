@@ -10,10 +10,9 @@
     <thead>
       <tr>
         <th>Askare</th>
-        <th>Kuvaus</th>
         <th>Takaraja</th>
         <th>Tila</th>
-        <!-- <th>Lisäyspäivä</th> -->
+        <th>Lisätty</th>
         <th></th>
       </tr>
     </thead>
@@ -31,7 +30,7 @@
                     <label class="label label-danger">kesken
                   {% endif %}
               </td>
-              <!-- <td>{{note.added}}</td> -->
+              <td>{{note.lisays_paiva}}</td>
               <td><a class="btn btn-default btn-sm" href="{{base_path}}/note/{{note.id}}/edit">Muokkaa</a></td>
             </tr>
           {% endfor %}

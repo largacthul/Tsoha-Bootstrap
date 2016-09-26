@@ -13,7 +13,8 @@ CREATE TABLE Note (
   otsikko varchar(50) NOT NULL,
   kuvaus varchar(200),
   deadline timestamp,
-  valmis boolean
+  valmis boolean DEFAULT FALSE,
+  lisays_paiva timestamp DEFAULT now()
 );
 
 CREATE TABLE NoteViewer (
