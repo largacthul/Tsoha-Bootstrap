@@ -26,3 +26,4 @@ Tähän mennessä toteutettuja osasivuja:
 * [Etusivu/Listaussivu](http://lgrohn.users.cs.helsinki.fi/tsoha/)
 * [Muistiinpanon tarkastelu esim.](http://lgrohn.users.cs.helsinki.fi/tsoha/note/4)
 * [Muistiinpanon lisäys](http://lgrohn.users.cs.helsinki.fi/tsoha/note/new)
+* [Muistiinpanon muokkaus ja poisto (tarkastelusivun kautta esim.)](http://lgrohn.users.cs.helsinki.fi/tsoha/note/10)

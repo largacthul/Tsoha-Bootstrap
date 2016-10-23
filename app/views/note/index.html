@@ -2,6 +2,11 @@
 {% block content %}
   <h1>Muistilista</h1>
 
+  {% if message %}
+  <div class="alert alert-success">
+    {{message}}
+  </div>
+  {% endif %}
   <p>
     <a href="{{base_path}}/note/new" class="btn btn-success">Lisää askare</a>
   </p>
@@ -21,7 +26,6 @@
       {% for note in notes %}
             <tr>
               <td><a href="{{base_path}}/note/{{note.id}}">{{note.otsikko}}</a><br/><small>{{note.kuvaus}}</small></td>
-              <!-- <td>{{note.kuvaus}}</td> -->
               <td>{{note.deadline}}</td>
               <td>
                   {% if note.valmis %}

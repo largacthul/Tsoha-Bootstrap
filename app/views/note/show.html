@@ -1,8 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
+  {% if message %}
   <div class="alert alert-success">
     {{message}}
   </div>
+  {% endif %}
 
   <h1>{{note.otsikko}}</h1>
 
@@ -22,8 +24,10 @@
   </ul>
 
   <p>
-    <!-- <button class="btn btn-danger">Poista</button>  -->
     <a href="{{base_path}}/note/{{note.id}}/edit" class="btn btn-default">Muokkaa</a>
   </p>
+  <form method="post" action="{{base_path}}/note/{{note.id}}/destroy" style="display: inline-block;">
+    <button type="submit" class="btn btn-danger">Poista</button>
+  </form>
 
 {% endblock %}

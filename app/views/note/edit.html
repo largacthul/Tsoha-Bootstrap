@@ -8,14 +8,17 @@
       <label>Otsikko</label>
       <input type="text" name="otsikko" class="form-control" value="{{note.otsikko}}">
     </div>
+    
     <div class="form-group">
       <label>Kuvaus</label>
       <input type="text" name="kuvaus" class="form-control" value="{{note.kuvaus}}">
     </div>
+
     <div class="form-group">
       <label>Deadline</label>
       <input type="datetime" name="deadline" class="form-control" value="{{note.deadline}}">
     </div>
+
     <div class="radio">
       <label>
         <input type="radio" name="valmis" id="optionsRadios1" value="true" {% if note.valmis %}checked{% endif %}>
@@ -23,25 +26,13 @@
         <label class="label label-success">Valmis</label>
       </label>
     </div>
+
     <div class="radio">
       <label>
         <input type="radio" name="valmis" id="optionsRadios2" value="false" {% if not note.valmis %}checked{% endif %}>
         <label class="label label-danger">kesken</label>
       </label>
     </div>
-    <!-- <div class="btn-group">
-      <button type="button" class="btn btn-default">Tärkeys</button>
-      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <span class="caret"></span>
-        <span class="sr-only">Toggle Dropdown</span>
-      </button>
-      <ul class="dropdown-menu">
-        <li><a href="#">Kriittinen!</a></li>
-        <li><a href="#">Tärkeä</a></li>
-        <li><a href="#">Normaali</a></li>
-        <li><a href="#">Ei tärkeä</a></li>
-      </ul>
-    </div> -->
 
     <div class="form-group">
       <button type="submit" class="btn btn-primary">Tallenna</button>

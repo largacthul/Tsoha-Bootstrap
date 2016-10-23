@@ -24,10 +24,43 @@ class NoteController extends BaseController {
       'deadline' => $params['deadline']
     ));
 
-    // Kint::dump($params);
-
     $note->save();
 
     Redirect::to('/note/' . $note->id, array('message' => 'Askare on lisätty muistioosi!'));
+  }
+
+  public static function edit($id) {
+    $note = Note::find($id);
+    View::make('note/edit.html', array('note' => $note));
+  }
+
+  public static function update($id) {
+    $params = $_POST;
+
+    $attributes = array(
+      'id' => $id,
+      'otsikko' => $params['otsikko'],
+      'kuvaus' => $params['kuvaus'],
+      'deadline' => $params['deadline']
+    );
+
+    $note = new Note($attributes);
+    $errors = $note->errors();
+
+    if(count($errors) > 0){
+      View::make('note/edit.html', array('errors' => $errors, 'attributes' => $attributes));
+    }else{
+      $note->update($id);
+
+      Redirect::to('/note/' . $note->id, array('message' => 'Askaretta on muokattu onnistuneesti!'));
+    }
+   }
+
+  public static function destroy($id){
+    $note = new Note(array('id' => $id));
+    $note->destroy($id);
+
+
+    Redirect::to('/note', array('message' => 'Askare on poistettu onnistuneesti!'));
   }
 }
