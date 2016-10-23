@@ -3,8 +3,13 @@
 class NoteController extends BaseController {
 
   public static function index(){
-    $notes = Note::all();
-    View::make('note/index.html', array('notes' => $notes));
+    $user = self::get_user_logged_in();
+    if(!$user) {
+      View::make('user/login.html');
+    }else{
+      $notes = Note::all($user->id);
+      View::make('note/index.html', array('notes' => $notes));
+    }
   }
 
   public static function show($id) {

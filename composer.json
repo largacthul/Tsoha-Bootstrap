@@ -5,7 +5,8 @@
 			"lib",
 			"app/controllers",
       "app/models/note.php",
-      "app/models/label.php"
+      "app/models/label.php",
+      "app/models/user.php"
 		]
 	},
 	"require": {

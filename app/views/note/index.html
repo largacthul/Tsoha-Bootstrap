@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-  <h1>Muistilista</h1>
+  <h1>Muistilista - {{user_logged_in.nimi}}</h1>
 
   {% if message %}
   <div class="alert alert-success">

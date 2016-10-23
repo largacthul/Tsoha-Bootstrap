@@ -32,6 +32,15 @@
     NoteController::destroy($id);
   });
 
+  $routes->get('/login', function(){
+  // Kirjautumislomakkeen esittäminen
+    UserController::login();
+  });
+  $routes->post('/login', function(){
+    // Kirjautumisen käsittely
+    UserController::handle_login();
+  });
+
   $routes->get('/hiekkalaatikko', function() {
     HelloWorldController::sandbox();
   });

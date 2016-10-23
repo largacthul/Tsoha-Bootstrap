@@ -7,10 +7,10 @@ class Note extends BaseModel {
     $this->validators = array('validate_otsikko', 'validate_kuvaus');
   }
 
-  public static function all(){
+  public static function all($user){
 
-    $query = DB::connection()->prepare('SELECT * FROM Note');
-    $query->execute();
+    $query = DB::connection()->prepare('SELECT * FROM Note WHERE noteowner_id = :user');
+    $query->execute(array('user' => $user));
     $rows = $query->fetchAll();
     $notes = array();
 
