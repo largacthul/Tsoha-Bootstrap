@@ -28,17 +28,23 @@ class NoteController extends BaseController {
     self::check_logged_in();
     $user = self::get_user_logged_in();
     $params = $_POST;
-    $note = new Note(array(
+    $attributes = array(
       'noteowner_id' => $user->id,
       'otsikko' => $params['otsikko'],
       'kuvaus' => $params['kuvaus'],
       'deadline' => $params['deadline'],
       'prioriteetti' => $params['prioriteetti']
-    ));
+    );
+    $note = new Note($attributes);
+    $errors = $note->errors();
 
-    $note->save();
+    if(count($errors) > 0){
+      View::make('note/new.html', array('errors' => $errors, 'note' => $attributes));
+    }else{
+      $note->save();
 
-    Redirect::to('/note/' . $note->id, array('message' => 'Askare on lisätty muistioosi!'));
+      Redirect::to('/note/' . $note->id, array('message' => 'Askare on lisätty muistioosi!'));
+    }
   }
 
   public static function edit($id) {

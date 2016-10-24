@@ -105,4 +105,16 @@
       return $errors;
     }
 
+    public function validate_label_nimi() {
+      $errors = array();
+      if($this->nimi == '' || $this->nimi == null) {
+        $errors[] = 'Tyhjä ei käy!';
+      }
+      if(strlen($this->nimi) > 30) {
+        $errors[] = 'Maksimipituus 30 merkkiä';
+      }
+
+      return $errors;
+    }
+
   }
