@@ -8,7 +8,7 @@
       <label>Otsikko</label>
       <input type="text" name="otsikko" class="form-control" value="{{note.otsikko}}">
     </div>
-    
+
     <div class="form-group">
       <label>Kuvaus</label>
       <input type="text" name="kuvaus" class="form-control" value="{{note.kuvaus}}">
@@ -17,6 +17,16 @@
     <div class="form-group">
       <label>Deadline</label>
       <input type="datetime" name="deadline" class="form-control" value="{{note.deadline}}">
+    </div>
+
+    <div class="form-group">
+      <label>Prioriteetti</label>
+      <select class="form-control" name="prioriteetti">
+        <option value="Ei tärkeä">Ei tärkeä</option>
+        <option value="Normaali">Normaali</option>
+        <option value="Tärkeä">Tärkeä</option>
+        <option value="Kriittinen!">Kriittinen!</option>
+      </select>
     </div>
 
     <div class="radio">

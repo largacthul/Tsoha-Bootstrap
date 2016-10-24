@@ -32,7 +32,8 @@ class NoteController extends BaseController {
       'noteowner_id' => $user->id,
       'otsikko' => $params['otsikko'],
       'kuvaus' => $params['kuvaus'],
-      'deadline' => $params['deadline']
+      'deadline' => $params['deadline'],
+      'prioriteetti' => $params['prioriteetti']
     ));
 
     $note->save();
@@ -55,6 +56,7 @@ class NoteController extends BaseController {
       'otsikko' => $params['otsikko'],
       'kuvaus' => $params['kuvaus'],
       'deadline' => $params['deadline'],
+      'prioriteetti' => $params['prioriteetti'],
       'valmis' => $params['valmis']
     );
 

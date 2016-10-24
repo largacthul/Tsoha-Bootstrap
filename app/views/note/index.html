@@ -16,6 +16,7 @@
       <tr>
         <th>Askare</th>
         <th>Takaraja</th>
+        <th>Prioriteetti</th>
         <th>Tila</th>
         <th>Lisätty</th>
         <th></th>
@@ -27,6 +28,7 @@
             <tr>
               <td><a href="{{base_path}}/note/{{note.id}}">{{note.otsikko}}</a><br/><small>{{note.kuvaus}}</small></td>
               <td>{{note.deadline}}</td>
+              <td>{{note.prioriteetti}}</td>
               <td>
                   {% if note.valmis %}
                     <label class="label label-success">Valmis

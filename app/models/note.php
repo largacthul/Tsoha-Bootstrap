@@ -1,6 +1,6 @@
 <?php
 class Note extends BaseModel {
-  public $id, $noteowner_id, $otsikko, $kuvaus, $deadline, $valmis, $lisays_paiva;
+  public $id, $noteowner_id, $otsikko, $kuvaus, $deadline, $prioriteetti, $valmis, $lisays_paiva;
 
   public function __construct($attributes){
     parent::__construct($attributes);
@@ -21,6 +21,7 @@ class Note extends BaseModel {
         'otsikko' => $row['otsikko'],
         'kuvaus' => $row['kuvaus'],
         'deadline' => $row['deadline'],
+        'prioriteetti' => $row['prioriteetti'],
         'valmis' => $row['valmis'],
         'lisays_paiva' => $row['lisays_paiva']
         // 'added' => $row['added']
@@ -41,6 +42,7 @@ class Note extends BaseModel {
         'otsikko' => $row['otsikko'],
         'kuvaus' => $row['kuvaus'],
         'deadline' => $row['deadline'],
+        'prioriteetti' => $row['prioriteetti'],
         'valmis' => $row['valmis'],
         'lisays_paiva' => $row['lisays_paiva']
       ));
@@ -53,15 +55,15 @@ class Note extends BaseModel {
 
   public function save(){
     // Lisätään RETURNING id tietokantakyselymme loppuun, niin saamme lisätyn rivin id-sarakkeen arvon
-    $query = DB::connection()->prepare('INSERT INTO Note (noteowner_id, otsikko, kuvaus, deadline) VALUES (:noteowner_id, :otsikko, :kuvaus, :deadline) RETURNING id');
-    $query->execute(array('noteowner_id' => $this->noteowner_id, 'otsikko' => $this->otsikko, 'kuvaus' => $this->kuvaus, 'deadline' => $this->deadline));
+    $query = DB::connection()->prepare('INSERT INTO Note (noteowner_id, otsikko, kuvaus, deadline, prioriteetti) VALUES (:noteowner_id, :otsikko, :kuvaus, :deadline, :prioriteetti) RETURNING id');
+    $query->execute(array('noteowner_id' => $this->noteowner_id, 'otsikko' => $this->otsikko, 'kuvaus' => $this->kuvaus, 'deadline' => $this->deadline, 'prioriteetti' => $this->prioriteetti));
     $row = $query->fetch();
     $this->id = $row['id'];
   }
 
   public function update($id) {
-    $query = DB::connection()->prepare('UPDATE Note SET otsikko = :otsikko, kuvaus = :kuvaus, deadline = :deadline, valmis = :valmis WHERE id = :id');
-    $query->execute(array('id' => $this->id, 'otsikko' => $this->otsikko, 'kuvaus' => $this->kuvaus, 'deadline' => $this->deadline, 'valmis' => $this->valmis));
+    $query = DB::connection()->prepare('UPDATE Note SET otsikko = :otsikko, kuvaus = :kuvaus, deadline = :deadline, prioriteetti = :prioriteetti, valmis = :valmis WHERE id = :id');
+    $query->execute(array('id' => $this->id, 'otsikko' => $this->otsikko, 'kuvaus' => $this->kuvaus, 'deadline' => $this->deadline, 'prioriteetti' => $this->prioriteetti, 'valmis' => $this->valmis));
   }
 
   public static function destroy($id) {

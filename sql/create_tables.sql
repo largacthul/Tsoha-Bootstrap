@@ -7,12 +7,20 @@ CREATE TABLE NoteOwner (
   salasana varchar(30) NOT NULL
 );
 
+CREATE TYPE prio_type AS ENUM (
+  'Kriittinen!',
+  'Tärkeä',
+  'Normaali',
+  'Ei tärkeä'
+);
+
 CREATE TABLE Note (
   id SERIAL PRIMARY KEY,
   noteowner_id INTEGER REFERENCES NoteOwner(id),
   otsikko varchar(50) NOT NULL,
   kuvaus varchar(200),
   deadline timestamp,
+  prioriteetti prio_type DEFAULT 'Normaali',
   valmis boolean DEFAULT FALSE,
   lisays_paiva timestamp DEFAULT now()
 );
@@ -22,17 +30,11 @@ CREATE TABLE NoteViewer (
   note_id INTEGER REFERENCES Note(id)
 );
 
-CREATE TYPE prio_type AS ENUM (
-  'Kriittinen!',
-  'Tärkeä',
-  'Normaali',
-  'Ei tärkeä'
-);
+
 
 CREATE TABLE Label (
   id SERIAL PRIMARY KEY,
-  nimi varchar(50) NOT NULL,
-  prioriteetti prio_type DEFAULT 'Normaali'
+  nimi varchar(30) NOT NULL
 );
 
 CREATE TABLE NoteLabel (
