@@ -41,6 +41,10 @@
     UserController::handle_login();
   });
 
+  $routes->post('/logout', function(){
+    UserController::logout();
+  });
+
   $routes->get('/hiekkalaatikko', function() {
     HelloWorldController::sandbox();
   });

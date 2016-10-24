@@ -54,10 +54,55 @@
     }
 
     public function validate_deadline() {
-      // tarkistetaan että dealine sopivassa muodossa tietokantaan
+      // tarkistetaan että deadline sopivassa muodossa tietokantaan
       $pattern = '';
-      // tarkistetaan että dealine ei ole menneisyydessä
+      // tarkistetaan että deadline ei ole menneisyydessä
 
+    }
+
+    public function validate_tunnus() {
+      $errors = array();
+      if($this->tunnus == '' || $this->tunnus == null){
+        $errors[] = 'Tunnus ei saa olla tyhjä!';
+      }
+      if(strlen($this->tunnus) > 30) {
+        $errors[] = 'Tunnuksen maksimipituus on 30 merkkiä!';
+      }
+
+      return $errors;
+    }
+
+    public function validate_nimi() {
+      $errors = array();
+      if($this->nimi == '' || $this->nimi == null){
+        $errors[] = 'Nimi ei saa olla tyhjä!';
+      }
+      if(strlen($this->nimi) > 30) {
+        $errors[] = 'Nimen maksimipituus on 30 merkkiä!';
+      }
+
+      return $errors;
+    }
+
+    public function validate_user_kuvaus() {
+      $errors = array();
+      if(strlen($this->kuvaus) > 120) {
+        $errors[] = 'Kuvauksen maksimipituus on 120 merkkiä!';
+      }
+
+      return $errors;
+    }
+
+    public function validate_salasana() {
+      $errors = array();
+      if($this->salasana == '' || $this->salasana == null){
+        $errors[] = 'Salasana ei saa olla tyhjä!';
+      }
+      if(strlen($this->salasana) > 30) {
+        $errors[] = 'Salasanan maksimipituus on 30 merkkiä!';
+      }
+
+      return $errors;
     }
 
   }

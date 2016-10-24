@@ -13,13 +13,16 @@
       return null;
     }
 
-    public static function check_logged_in($id){
+    public static function check_logged_in(){
       // Toteuta kirjautumisen tarkistus tähän.
       // Jos käyttäjä ei ole kirjautunut sisään, ohjaa hänet toiselle sivulle (esim. kirjautumissivulle).
-      $user = get_user_logged_in();
-      
-      if(!user) {
-        View::make('user/login.html');
+      // $user = get_user_logged_in();
+      //
+      // if(!user) {
+      //   View::make('user/login.html');
+      // }
+      if(!isset($_SESSION['user'])){
+        Redirect::to('/login', array('message' => 'Kirjaudu ensin sisään!'));
       }
     }
 

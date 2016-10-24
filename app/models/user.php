@@ -4,7 +4,7 @@ class User extends BaseModel {
 
   public function __construct($attributes){
     parent::__construct($attributes);
-    $this->validators = array('validate_tunnus', 'validate_nimi', 'validate_kuvaus', 'validate_salasana');
+    $this->validators = array('validate_tunnus', 'validate_nimi', 'validate_user_kuvaus', 'validate_salasana');
   }
 
   public function auth($tunnus, $salasana) {
