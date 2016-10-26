@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Muistilista - {{user_logged_in.nimi}}</h1>
+  {% if message %}
+  <div class="alert alert-success">
+    {{message}}
+  </div>
+  {% endif %}
+  {% if errors %}
+    <div class="alert alert-danger">
+      <ul>
+        {% for error in errors %}
+          <li>{{error}}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>Luokat</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for label in labels %}
+            <tr>
+              <td>{{label.nimi}}</td>
+            </tr>
+          {% endfor %}
+    </tbody>
+  </table>
+
+  <form method="post" action="{{base_path}}/labels">
+    <div class="form-group">
+      <label>Lisää luokka</label>
+      <input type="text" name="nimi" class="form-control" value="{{label.nimi}}">
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">Lisää</button>
+    </div>
+  </form>
+{% endblock %}

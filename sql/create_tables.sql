@@ -4,7 +4,8 @@ CREATE TABLE NoteOwner (
   tunnus varchar(30) NOT NULL,
   nimi varchar(30) NOT NULL,
   kuvaus varchar(120),
-  salasana varchar(30) NOT NULL
+  salasana varchar(30) NOT NULL,
+  admin boolean DEFAULT FALSE
 );
 
 CREATE TYPE prio_type AS ENUM (

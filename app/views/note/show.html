@@ -14,14 +14,18 @@
 
 
   <ul>
-    <li><strong>Takaraja:</strong>{{note.deadline}}</li>
-    <li><strong>Prioriteetti:</strong>{{note.prioriteetti}}</li>
+    <li><strong>Takaraja :</strong>{{note.deadline}}</li>
+    <li><strong>Prioriteetti: </strong>{{note.prioriteetti}}</li>
     {% if note.valmis %}
-      <li><strong>Status:</strong> <label class="label label-success">Valmis</label></li>
+      <li><strong>Status: </strong> <label class="label label-success">Valmis</label></li>
     {% else %}
-      <li><strong>Status:</strong> <label class="label label-danger">kesken</label></li>
+      <li><strong>Status: </strong> <label class="label label-danger">kesken</label></li>
     {% endif %}
-    <li><strong>Lisäyspäivä:</strong> {{note.lisays_paiva}}</li>
+    <li><strong>Lisäyspäivä: </strong> {{note.lisays_paiva}}</li>
+    <li><strong>Luokat: </strong>
+      {% for label in note.labels %}
+        <label class="label label-info">{{label.nimi}}</label>
+      {% endfor %}
   </ul>
 
   <p>

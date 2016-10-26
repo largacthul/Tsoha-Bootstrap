@@ -1,10 +1,26 @@
 <?php
 class Note extends BaseModel {
-  public $id, $noteowner_id, $otsikko, $kuvaus, $deadline, $prioriteetti, $valmis, $lisays_paiva;
+  public $id, $noteowner_id, $otsikko, $kuvaus, $deadline, $prioriteetti, $valmis, $lisays_paiva, $labels;
 
   public function __construct($attributes){
     parent::__construct($attributes);
     $this->validators = array('validate_otsikko', 'validate_kuvaus');
+  }
+
+  public function get_labels($note_id) {
+    $query = DB::connection()->prepare('SELECT Label.id, Label.nimi FROM NoteLabel INNER JOIN Note ON Note.id = NoteLabel.note_id INNER JOIN Label ON Label.id = NoteLabel.label_id WHERE Note.id = :id');
+    $query->execute(array('id' => $note_id));
+    $notelabels = $query->fetchAll();
+    $labels = array();
+
+    foreach ($notelabels as $notelabel) {
+      $labels[] = new Label(array(
+        'id' => $notelabel['id'],
+        'nimi' => $notelabel['nimi']
+      ));
+      // $labels[] = $notelabel;
+    }
+    return $labels;
   }
 
   public static function all($user){
@@ -13,9 +29,9 @@ class Note extends BaseModel {
     $query->execute(array('user' => $user));
     $rows = $query->fetchAll();
     $notes = array();
+    $labels = array();
 
     foreach($rows as $row){
-      // Tämä on PHP:n hassu syntaksi alkion lisäämiseksi taulukkoon :)
       $notes[] = new Note(array(
         'id' => $row['id'],
         'otsikko' => $row['otsikko'],
@@ -23,8 +39,9 @@ class Note extends BaseModel {
         'deadline' => $row['deadline'],
         'prioriteetti' => $row['prioriteetti'],
         'valmis' => $row['valmis'],
-        'lisays_paiva' => $row['lisays_paiva']
-        // 'added' => $row['added']
+        'lisays_paiva' => $row['lisays_paiva'],
+        'labels' => Note::get_labels($row['id'])
+
       ));
     }
 
@@ -35,6 +52,7 @@ class Note extends BaseModel {
     $query = DB::connection()->prepare('SELECT * FROM Note WHERE id = :id LIMIT 1');
     $query->execute(array('id' => $id));
     $row = $query->fetch();
+    $labels = array();
 
     if($row){
       $note = new Note(array(
@@ -44,7 +62,8 @@ class Note extends BaseModel {
         'deadline' => $row['deadline'],
         'prioriteetti' => $row['prioriteetti'],
         'valmis' => $row['valmis'],
-        'lisays_paiva' => $row['lisays_paiva']
+        'lisays_paiva' => $row['lisays_paiva'],
+        'labels' => Note::get_labels($row['id'])
       ));
 
       return $note;
@@ -70,4 +89,6 @@ class Note extends BaseModel {
     $query = DB::connection()->prepare('DELETE FROM Note WHERE id = :id');
     $query->execute(array('id' => $id));
   }
+
+
 }

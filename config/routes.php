@@ -32,6 +32,14 @@
     NoteController::destroy($id);
   });
 
+  $routes->get('/labels', function() {
+    LabelController::index();
+  });
+
+  $routes->post('/labels', function() {
+    LabelController::store();
+  });
+
   $routes->get('/login', function(){
   // Kirjautumislomakkeen esittäminen
     UserController::login();
