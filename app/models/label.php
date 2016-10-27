@@ -24,6 +24,22 @@ class Label extends BaseModel {
     return $labels;
   }
 
+  // public static function all($note_id){
+  //   $query = DB::connection()->prepare('SELECT * FROM Label WHERE id = :id');
+  //   $query->execute();
+  //   $rows = $query->fetchAll();
+  //   $labels = array();
+  //
+  //   foreach($rows as $row){
+  //     $labels[] = new Label(array(
+  //       'id' => $row['id'],
+  //       'nimi' => $row['nimi']
+  //     ));
+  //   }
+  //
+  //   return $labels;
+  // }
+
   public static function find($id){
     $query = DB::connection()->prepare('SELECT * FROM Label WHERE id = :id LIMIT 1');
     $query->execute(array('id' => $id));

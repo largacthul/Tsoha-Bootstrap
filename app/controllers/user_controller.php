@@ -24,4 +24,18 @@ class UserController extends BaseController{
       Redirect::to('/', array('message' => 'Tervetuloa takaisin ' . $user->nimi . '!'));
     }
   }
+
+  public static function index(){
+    $user = self::get_user_logged_in();
+    if(!$user) {
+      View::make('user/login.html');
+    }else{
+      $users = User::all($user->id);
+      View::make('user/admin.html', array('users' => $users));
+    }
+  }
+
+  public static function create() {
+    Redirect::to('/admin', array('message' => 'Käyttäjien luonti ei onnistu tätä kautta!'));
+  }
 }

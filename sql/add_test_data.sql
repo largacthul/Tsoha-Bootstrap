@@ -1,6 +1,6 @@
 -- Lisää INSERT INTO lauseet tähän tiedostoon
 -- NoteOwner testidata
-INSERT INTO NoteOwner (tunnus, nimi, kuvaus, salasana, admin) VALUES ('NoteMaster', 'Paavo Paavolainen', 'Muistiinpanojen harrastaja nr 1', 'password1', FALSE);
+INSERT INTO NoteOwner (tunnus, nimi, kuvaus, salasana, admin) VALUES ('NoteMaster', 'Kuningas Mestari', 'Muistiinpanojen harrastaja nr 1', 'password1', FALSE);
 INSERT INTO NoteOwner (tunnus, nimi, kuvaus, salasana, admin) VALUES ('Muistiinpanija', 'Aatu Askare', 'Satunnainen käyttäjä', 'salasana', FALSE);
 INSERT INTO NoteOwner (tunnus, nimi, kuvaus, salasana, admin) VALUES ('tester', 'Testaaja', 'Rikkoo kaiken', 'testingonetwo', TRUE);
 -- Note testidata

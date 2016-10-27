@@ -18,7 +18,6 @@ class Note extends BaseModel {
         'id' => $notelabel['id'],
         'nimi' => $notelabel['nimi']
       ));
-      // $labels[] = $notelabel;
     }
     return $labels;
   }
@@ -73,16 +72,22 @@ class Note extends BaseModel {
   }
 
   public function save(){
-    // Lisätään RETURNING id tietokantakyselymme loppuun, niin saamme lisätyn rivin id-sarakkeen arvon
     $query = DB::connection()->prepare('INSERT INTO Note (noteowner_id, otsikko, kuvaus, deadline, prioriteetti) VALUES (:noteowner_id, :otsikko, :kuvaus, :deadline, :prioriteetti) RETURNING id');
     $query->execute(array('noteowner_id' => $this->noteowner_id, 'otsikko' => $this->otsikko, 'kuvaus' => $this->kuvaus, 'deadline' => $this->deadline, 'prioriteetti' => $this->prioriteetti));
     $row = $query->fetch();
     $this->id = $row['id'];
   }
 
-  public function update($id) {
+  public function update($id, $labels) {
+    //päivitetään Note
     $query = DB::connection()->prepare('UPDATE Note SET otsikko = :otsikko, kuvaus = :kuvaus, deadline = :deadline, prioriteetti = :prioriteetti, valmis = :valmis WHERE id = :id');
     $query->execute(array('id' => $this->id, 'otsikko' => $this->otsikko, 'kuvaus' => $this->kuvaus, 'deadline' => $this->deadline, 'prioriteetti' => $this->prioriteetti, 'valmis' => $this->valmis));
+    //päivitetään NoteLabel
+    foreach ($labels as $label) {
+       $label_id = $label;
+       $query = DB::connection()->prepare('INSERT INTO NoteLabel (note_id, label_id) VALUES (:id, :label_id)');
+       $query->execute(array('id' => $id, 'label_id' => $label_id));
+     }
   }
 
   public static function destroy($id) {

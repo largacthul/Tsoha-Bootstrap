@@ -16,7 +16,9 @@ class NoteController extends BaseController {
   public static function show($id) {
     self::check_logged_in();
     $note = Note::find($id);
-    View::make('note/show.html', array('note' => $note));
+    $labels = Label::all();
+
+    View::make('note/show.html', array('note' => $note, 'labels' => $labels));
   }
 
   public static function create() {
@@ -50,12 +52,28 @@ class NoteController extends BaseController {
   public static function edit($id) {
     self::check_logged_in();
     $note = Note::find($id);
-    View::make('note/edit.html', array('note' => $note));
+    $labels = Label::all();
+    View::make('note/edit.html', array('note' => $note, 'labels' => $labels));
   }
 
   public static function update($id) {
     self::check_logged_in();
     $params = $_POST;
+    $add_labels = $params['labels'];
+    $note_labels = Note::get_labels($id);
+    $labels = array();
+
+    foreach ($note_labels as $note_label) {
+      $old_labels[] = $note_label->id;
+    }
+    foreach ($add_labels as $add_candidate) {
+      if (!in_array($add_candidate, $old_labels)) {
+        $labels[] = $add_candidate;
+      }
+    }
+
+    
+
 
     $attributes = array(
       'id' => $id,
@@ -64,7 +82,12 @@ class NoteController extends BaseController {
       'deadline' => $params['deadline'],
       'prioriteetti' => $params['prioriteetti'],
       'valmis' => $params['valmis']
+      // 'labels' => array()
     );
+
+    // foreach ($labels as $label) {
+    //   $attributes['labels'][] = $label;
+    // }
 
     $note = new Note($attributes);
     $errors = $note->errors();
@@ -72,7 +95,7 @@ class NoteController extends BaseController {
     if(count($errors) > 0){
       View::make('note/edit.html', array('errors' => $errors, 'attributes' => $attributes));
     }else{
-      $note->update($id);
+      $note->update($id, $labels);
 
       Redirect::to('/note/' . $note->id, array('message' => 'Askaretta on muokattu onnistuneesti!'));
     }

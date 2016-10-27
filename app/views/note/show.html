@@ -12,27 +12,42 @@
     {{note.kuvaus}}
   </p>
 
+  <div class="row">
+    <div class="col-sm-4">
+      <ul>
+        <li><strong>Takaraja :</strong>{{note.deadline}}</li>
+        <li><strong>Prioriteetti: </strong>{{note.prioriteetti}}</li>
+          {% if note.valmis %}
+            <li><strong>Status: </strong> <label class="label label-success">Valmis</label></li>
+          {% else %}
+            <li><strong>Status: </strong> <label class="label label-danger">kesken</label></li>
+          {% endif %}
+        <li><strong>Lisäyspäivä: </strong> {{note.lisays_paiva}}</li>
+      </ul>
+      <strong>Luokat: </strong>
+        {% for label in note.labels %}
+          <li><label class="label label-info">{{ label.nimi }}</label></li>
+        {% else %}
+          ei luokkia
+        {% endfor %}
+    </div>
+    <!-- <div class="col-sm-3">
+      <strong>Lisää luokkia </strong>
+      <select multiple class="form-control">
+        {% for label in labels %}
+          <option value="label.id">{{label.nimi}}</option>
+        {% endfor %}
+      </select>
 
-  <ul>
-    <li><strong>Takaraja :</strong>{{note.deadline}}</li>
-    <li><strong>Prioriteetti: </strong>{{note.prioriteetti}}</li>
-    {% if note.valmis %}
-      <li><strong>Status: </strong> <label class="label label-success">Valmis</label></li>
-    {% else %}
-      <li><strong>Status: </strong> <label class="label label-danger">kesken</label></li>
-    {% endif %}
-    <li><strong>Lisäyspäivä: </strong> {{note.lisays_paiva}}</li>
-    <li><strong>Luokat: </strong>
-      {% for label in note.labels %}
-        <label class="label label-info">{{label.nimi}}</label>
-      {% endfor %}
-  </ul>
+    </div> -->
+  </div>
 
-  <p>
+  <div class=row>
     <a href="{{base_path}}/note/{{note.id}}/edit" class="btn btn-default">Muokkaa</a>
-  </p>
+
   <form method="post" action="{{base_path}}/note/{{note.id}}/destroy" style="display: inline-block;">
     <button type="submit" class="btn btn-danger">Poista</button>
   </form>
+    </div>
 
 {% endblock %}

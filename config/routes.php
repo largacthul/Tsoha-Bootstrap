@@ -49,6 +49,16 @@
     UserController::handle_login();
   });
 
+  $routes->get('/admin', function(){
+  // Kirjautumislomakkeen esittäminen
+    UserController::index();
+  });
+
+  $routes->get('/admin/new', function(){
+  // Kirjautumislomakkeen esittäminen
+    UserController::create();
+  });
+
   $routes->post('/logout', function(){
     UserController::logout();
   });
