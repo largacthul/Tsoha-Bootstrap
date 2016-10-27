@@ -24,7 +24,7 @@ class Note extends BaseModel {
 
   public static function all($user){
 
-    $query = DB::connection()->prepare('SELECT * FROM Note WHERE noteowner_id = :user');
+    $query = DB::connection()->prepare('SELECT * FROM Note WHERE noteowner_id = :user ORDER BY deadline');
     $query->execute(array('user' => $user));
     $rows = $query->fetchAll();
     $notes = array();

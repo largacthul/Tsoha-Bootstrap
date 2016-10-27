@@ -9,6 +9,10 @@
   margin: 0px auto;
 }
 
+.row{
+  padding: 20px 0px 20px;
+}
+
 h1{
   padding: 25px 20px 65px 0px;
 }

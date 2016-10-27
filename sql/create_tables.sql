@@ -40,5 +40,6 @@ CREATE TABLE Label (
 
 CREATE TABLE NoteLabel (
   note_id INTEGER REFERENCES Note(id),
-  label_id INTEGER REFERENCES Label(id)
+  label_id INTEGER REFERENCES Label(id),
+  UNIQUE (note_id, label_id)
 );

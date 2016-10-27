@@ -61,6 +61,7 @@ class NoteController extends BaseController {
     $params = $_POST;
     $add_labels = $params['labels'];
     $note_labels = Note::get_labels($id);
+    $old_labels = array();
     $labels = array();
 
     foreach ($note_labels as $note_label) {
@@ -72,7 +73,7 @@ class NoteController extends BaseController {
       }
     }
 
-    
+
 
 
     $attributes = array(
