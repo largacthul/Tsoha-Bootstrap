@@ -22,6 +22,19 @@ class Note extends BaseModel {
     return $labels;
   }
 
+  public function get_label_ids($id) {
+    $query = DB::connection()->prepare('SELECT * FROM Label WHERE note_id = :id');
+    $query->execute(array('id' => $id));
+    $rows = $query->fetchAll();
+    $note_ids = array();
+
+    foreach ($rows as $row) {
+      $label_ids[] = $row['id'];
+    }
+
+    return $label_ids;
+  }
+
   public static function all($user){
 
     $query = DB::connection()->prepare('SELECT * FROM Note WHERE noteowner_id = :user ORDER BY deadline');
@@ -91,8 +104,14 @@ class Note extends BaseModel {
   }
 
   public static function destroy($id) {
+    //tuhotaan noten linkit labeleihin
+    $query = DB::connection()->prepare('DELETE FROM NoteLabel WHERE note_id = :id');
+    $query->execute(array('id' => $id));
+    //tuhotaan note
     $query = DB::connection()->prepare('DELETE FROM Note WHERE id = :id');
     $query->execute(array('id' => $id));
+
+
   }
 
 

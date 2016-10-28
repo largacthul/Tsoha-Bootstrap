@@ -59,6 +59,22 @@
     UserController::create();
   });
 
+  $routes->post('/admin', function(){
+    UserController::store();
+  });
+
+  $routes->get('/admin/:id/edit', function($id){
+    UserController::edit($id);
+  });
+
+  $routes->post('/admin/:id/edit', function($id){
+    UserController::update($id);
+  });
+
+  $routes->post('/admin/:id/destroy', function($id){
+    UserController::destroy($id);
+  });
+
   $routes->post('/logout', function(){
     UserController::logout();
   });

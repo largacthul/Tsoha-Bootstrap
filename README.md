@@ -28,6 +28,8 @@ Tähän mennessä toteutettuja osasivuja:
 * [Muistiinpanon lisäys](http://lgrohn.users.cs.helsinki.fi/tsoha/note/new)
 * [Muistiinpanon muokkaus ja poisto (tarkastelusivun kautta esim.)](http://lgrohn.users.cs.helsinki.fi/tsoha/note/10)
 * [Hallintanäkymä](http://lgrohn.users.cs.helsinki.fi/tsoha/admin)
+* [Käyttäjän lisäys](http://lgrohn.users.cs.helsinki.fi/tsoha/admin/new)
+* [Käyttäjän muokkaus esim.](http://lgrohn.users.cs.helsinki.fi/tsoha/admin/2/edit)
 
 ## Testaus
 

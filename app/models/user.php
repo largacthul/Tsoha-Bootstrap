@@ -35,6 +35,7 @@ class User extends BaseModel {
         'tunnus' => $row['tunnus'],
         'nimi' => $row['nimi'],
         'kuvaus' => $row['kuvaus'],
+        'salasana' => $row['salasana'],
         'admin' => $row['admin']
       ));
       return $user;
@@ -44,7 +45,7 @@ class User extends BaseModel {
   }
 
   public function all() {
-    $query = DB::connection()->prepare('SELECT * FROM NoteOwner');
+    $query = DB::connection()->prepare('SELECT * FROM NoteOwner ORDER BY id');
     $query->execute();
     $rows = $query->fetchAll();
     $users = array();
@@ -64,11 +65,57 @@ class User extends BaseModel {
     return $users;
   }
 
+  public function save(){
+    $query = DB::connection()->prepare('INSERT INTO NoteOwner (tunnus, nimi, kuvaus, salasana, admin) VALUES (:tunnus, :nimi, :kuvaus, :salasana, :admin)');
+    $query->execute(array('tunnus' => $this->tunnus, 'nimi' => $this->nimi, 'kuvaus' => $this->kuvaus, 'salasana' => $this->salasana, 'admin' => $this->admin));
+    // $row = $query->fetch();
+    // $this->id = $row['id'];
+  }
+
+  public function update($id) {
+    //päivitetään NoteOwner
+    $query = DB::connection()->prepare('UPDATE NoteOwner SET tunnus = :tunnus, nimi = :nimi, kuvaus = :kuvaus, salasana = :salasana, admin = :admin WHERE id = :id');
+    $query->execute(array('id' => $this->id, 'tunnus' => $this->tunnus, 'nimi' => $this->nimi, 'kuvaus' => $this->kuvaus, 'salasana' => $this->salasana, 'admin' => $this->admin));
+  }
+
+  public static function destroy($id) {
+    //tuhotaan linkit käyttäjän noteista luokkiin
+    $note_ids = self::get_note_ids($id);
+
+    foreach ($note_ids as $note_id) {
+      $query = DB::connection()->prepare('DELETE FROM NoteLabel WHERE note_id = :note_id');
+      $query->execute(array('note_id' => $note_id));
+    }
+    // tuhotaan käyttäjän notet
+    $query = DB::connection()->prepare('DELETE FROM Note WHERE noteowner_id = :id');
+    $query->execute(array('id' => $id));
+
+    // destroy user
+    $query = DB::connection()->prepare('DELETE FROM NoteOwner WHERE id = :id');
+    $query->execute(array('id' => $id));
+
+  }
+
   public function num_notes($id) {
+
     $query = DB::connection()->prepare('SELECT * FROM Note WHERE noteowner_id = :id');
     $query->execute(array('id' => $id));
     $rows = $query->fetchAll();
+
     return count($rows);
+  }
+
+  public function get_note_ids($id) {
+    $query = DB::connection()->prepare('SELECT * FROM Note WHERE noteowner_id = :id');
+    $query->execute(array('id' => $id));
+    $rows = $query->fetchAll();
+    $note_ids = array();
+
+    foreach ($rows as $row) {
+      $note_ids[] = $row['id'];
+    }
+
+    return $note_ids;
   }
 
 }

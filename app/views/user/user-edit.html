@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Muokkaa käyttäjää {{user.tunnus}}</h1>
+
+  {% if errors %}
+    <div class="alert alert-danger">
+      <ul>
+        {% for error in errors %}
+          <li>{{error}}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+
+  <!-- <form method="post" action="{{base_path}}/note/{{note.id}}/edit"> -->
+
+    <div class="row">
+    <form method="post" action="{{base_path}}/admin/{{user.id}}/edit">
+    <div class="col-sm-5">
+
+    <div class="form-group">
+      <label>Tunnus</label>
+      <input type="text" name="tunnus" class="form-control" value="{{user.tunnus}}">
+    </div>
+
+    <div class="form-group">
+      <label>Nimi</label>
+      <input type="text" name="nimi" class="form-control" value="{{user.nimi}}">
+    </div>
+
+    <div class="form-group">
+      <label>Kuvaus</label>
+      <input type="text" name="kuvaus" class="form-control" value="{{user.kuvaus}}">
+    </div>
+
+    <div class="form-group">
+      <label>Salasana </label>
+      <input type="password" name="salasana" class="form-control" value="{{user.salasana}}">
+    </div>
+
+    <div class="checkbox">
+      <label>
+        {% if user.admin %}
+        <input type="checkbox" name="admin" value="true" checked>
+        {% else %}
+        <input type="checkbox" name="admin" value="false">
+        {% endif %}
+        Pääkäyttäjä
+      </label>
+    </div>
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">Tallenna</button>
+    </div>
+
+  </div>
+
+  </form>
+  </div>
+  <div class=row>
+
+  <form method="post" action="{{base_path}}/admin/{{user.id}}/destroy" style="display: inline-block;">
+    <button type="submit" class="btn btn-danger">Poista</button>
+  </form>
+    </div>
+    <!-- <div class="form-group">
+      <button type="submit" class="btn btn-primary">Tallenna</button>
+    </div>
+  </form> -->
+{% endblock %}

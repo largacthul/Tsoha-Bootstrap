@@ -59,11 +59,20 @@ class NoteController extends BaseController {
   public static function update($id) {
     self::check_logged_in();
     $params = $_POST;
+
+    //tarkistetaan oliko lisätty uusia luokkia
+    if (count($params) < 7) {
+      $add_labels = array();
+    }else{
     $add_labels = $params['labels'];
+    }
+    //haetaan nykyiset luokat
     $note_labels = Note::get_labels($id);
     $old_labels = array();
     $labels = array();
 
+    //verrataan uusia ja vanhoja, ettei lisätä samaa monta kertaa
+    //on kyllä vähän kömpelöä
     foreach ($note_labels as $note_label) {
       $old_labels[] = $note_label->id;
     }
@@ -74,8 +83,6 @@ class NoteController extends BaseController {
     }
 
 
-
-
     $attributes = array(
       'id' => $id,
       'otsikko' => $params['otsikko'],
@@ -83,12 +90,7 @@ class NoteController extends BaseController {
       'deadline' => $params['deadline'],
       'prioriteetti' => $params['prioriteetti'],
       'valmis' => $params['valmis']
-      // 'labels' => array()
     );
-
-    // foreach ($labels as $label) {
-    //   $attributes['labels'][] = $label;
-    // }
 
     $note = new Note($attributes);
     $errors = $note->errors();

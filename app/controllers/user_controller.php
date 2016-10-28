@@ -36,6 +36,80 @@ class UserController extends BaseController{
   }
 
   public static function create() {
-    Redirect::to('/admin', array('message' => 'Käyttäjien luonti ei onnistu tätä kautta!'));
+    self::check_logged_in();
+    View::make('/user/user-new.html');
   }
+
+  public static function store(){
+    self::check_logged_in();
+    $params = $_POST;
+
+    //tarkistetaan oliko admin-checkbox valittu
+    if(count($params) < 5) {
+      $params['admin'] = 'false';
+    }
+
+    $attributes = array(
+      'tunnus' => $params['tunnus'],
+      'nimi' => $params['nimi'],
+      'kuvaus' => $params['kuvaus'],
+      'salasana' => $params['salasana'],
+      'admin' => $params['admin']
+    );
+    $user = new User($attributes);
+    $errors = $user->errors();
+
+    if(count($errors) > 0){
+      View::make('user/user-new.html', array('errors' => $errors, 'user' => $attributes));
+    }else{
+      $user->save();
+
+      Redirect::to('/admin', array('message' => 'Käyttäjä on lisätty palveluun'));
+    }
+  }
+
+  public static function edit($id) {
+    self::check_logged_in();
+    $user = User::find($id);
+    View::make('user/user-edit.html', array('user' => $user));
+  }
+
+  public static function update($id) {
+    self::check_logged_in();
+    $params = $_POST;
+
+    //tarkistetaan oliko admin-checkbox valittu
+    if(count($params) < 6) {
+      $params['admin'] = 'false';
+    }
+
+    $attributes = array(
+      'id' => $id,
+      'tunnus' => $params['tunnus'],
+      'nimi' => $params['nimi'],
+      'kuvaus' => $params['kuvaus'],
+      'salasana' => $params['salasana'],
+      'admin' => $params['admin']
+    );
+
+    $user = new User($attributes);
+    $errors = $user->errors();
+
+    if(count($errors) > 0){
+      View::make('user/user-edit.html', array('errors' => $errors, 'attributes' => $attributes));
+    }else{
+      $user->update($id);
+
+      Redirect::to('/admin', array('message' => 'Käyttäjää on muokattu onnistuneesti!'));
+    }
+  }
+
+  public static function destroy($id){
+    self::check_logged_in();
+    $user = new User(array('id' => $id));
+    $user->destroy($id);
+
+    Redirect::to('/admin', array('message' => 'Käyttäjä on poistettu onnistuneesti!'));
+  }
+
 }

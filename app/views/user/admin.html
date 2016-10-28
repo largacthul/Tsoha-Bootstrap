@@ -3,7 +3,7 @@
   <h1>Muistilista - Käyttäjien hallinta</h1>
 
   {% if message %}
-  <div class="alert alert-danger">
+  <div class="alert alert-success">
     {{message}}
   </div>
   {% endif %}
@@ -21,17 +21,19 @@
               <th>Nimi</th>
               <th>Kuvaus</th>
               <th>num_notes</th>
+              <th></th>
             </tr>
     </thead>
 
     <tbody>
       {% for user in users %}
             <tr>
-              <td>{{user.id}}</a></td>
+              <td>{{user.id}}</td>
               <td>{{user.tunnus}}</td>
               <td>{{user.nimi}}</td>
               <td>{{user.kuvaus}}</td>
               <td>{{user.num_notes}}</td>
+              <td><a class="btn btn-default btn-sm" href="{{base_path}}/admin/{{user.id}}/edit">Muokkaa</a></td>
             </tr>
       {% endfor %}
     </tbody>
