@@ -12,10 +12,11 @@
     </div>
   {% endif %}
 
-  <form method="post" action="{{base_path}}/note/{{note.id}}/edit">
+  <!-- <form method="post" action="{{base_path}}/note/{{note.id}}/edit"> -->
 
     <div class="row">
     <div class="col-sm-5">
+    <form method="post" action="{{base_path}}/note/{{note.id}}/edit">
     <div class="form-group">
       <label>Otsikko</label>
       <input type="text" name="otsikko" class="form-control" value="{{note.otsikko}}">
@@ -28,7 +29,7 @@
 
     <div class="form-group">
       <label>Deadline</label>
-      <input type="datetime" name="deadline" class="form-control" value="{{note.deadline}}">
+      <input type="datetime" name="deadline" class="form-control" value="{{note.deadline|date("j.n.Y \\k\\l\\o h:i")}}">
     </div>
 
     <div class="form-group">
@@ -55,6 +56,10 @@
         <label class="label label-danger">kesken</label>
       </label>
     </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">Tallenna</button>
+    </div>
+  </form>
   </div>
   <div class="col-sm-3">
     <p>
@@ -73,11 +78,12 @@
         {% endfor %}
       </select>
     </div>
+    <div class="col-sm-2"><a href="{{base_path}}/labels" class="btn btn-success">Lisää uusi luokka</a></div>
   </div>
   </div>
 
-    <div class="form-group">
+    <!-- <div class="form-group">
       <button type="submit" class="btn btn-primary">Tallenna</button>
     </div>
-  </form>
+  </form> -->
 {% endblock %}

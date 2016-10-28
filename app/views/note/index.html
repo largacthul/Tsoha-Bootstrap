@@ -52,7 +52,7 @@
           {% endfor %}
         </ul>
       </td>
-      <td>{{note.lisays_paiva}}</td>
+      <td>{{note.lisays_paiva|date("j.n.Y \\k\\l\\o h:i")}}</td>
       <td><a class="btn btn-default btn-sm" href="{{base_path}}/note/{{note.id}}/edit">Muokkaa</a></td>
     </tr>
     {% endfor %}

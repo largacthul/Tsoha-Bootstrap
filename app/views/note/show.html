@@ -15,14 +15,14 @@
   <div class="row">
     <div class="col-sm-4">
       <ul>
-        <li><strong>Takaraja :</strong>{{note.deadline}}</li>
+        <li><strong>Takaraja :</strong>{{note.deadline|date("j.n.Y \\k\\l\\o h:i")}}</li>
         <li><strong>Prioriteetti: </strong>{{note.prioriteetti}}</li>
           {% if note.valmis %}
             <li><strong>Status: </strong> <label class="label label-success">Valmis</label></li>
           {% else %}
             <li><strong>Status: </strong> <label class="label label-danger">kesken</label></li>
           {% endif %}
-        <li><strong>Lisäyspäivä: </strong> {{note.lisays_paiva}}</li>
+        <li><strong>Lisäyspäivä: </strong> {{note.lisays_paiva|date("j.n.Y \\k\\l\\o h:i")}}</li>
       </ul>
       <strong>Luokat: </strong>
         {% for label in note.labels %}
