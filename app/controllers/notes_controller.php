@@ -61,7 +61,7 @@ class NoteController extends BaseController {
     $params = $_POST;
 
     //tarkistetaan oliko lisätty uusia luokkia
-    if (count($params) < 7) {
+    if (count($params) < 6) {
       $add_labels = array();
     }else{
     $add_labels = $params['labels'];
